@@ -1,0 +1,10 @@
+CREATE TABLE tender_users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  project_name VARCHAR(255) NOT NULL,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  status VARCHAR(50) DEFAULT 'Ongoing',
+  form_filled TINYINT(1) DEFAULT 0,
+  picture VARCHAR(255) DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

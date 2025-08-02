@@ -1,0 +1,95 @@
+  body{
+        overflow-x: hidden;
+    }
+.form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+    }
+
+    form {
+      width: 90%;
+      max-width: 700px;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeSlideUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .form-section legend {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #000;
+      padding: 0 10px;
+    }
+
+    .form-section input,
+    .form-section select,
+    .form-section textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1.1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 16px;
+      box-sizing: border-box;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-section input:focus,
+    .form-section select:focus,
+    .form-section textarea:focus {
+      border-color: #00b0f0;
+      outline: none;
+    }
+
+    .form-section .row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .form-section .row input {
+      flex: 1 1 45%;
+      min-width: 150px;
+    }
+
+    @media (max-width: 600px) {
+      .form-section .row input {
+        flex: 1 1 100%;
+      }
+    }
+
+    button[type="submit"] {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #333;
+    }

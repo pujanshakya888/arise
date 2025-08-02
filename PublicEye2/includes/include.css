@@ -1,0 +1,347 @@
+/* Reset and base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header styling */
+header {
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 100;
+}
+
+/* Logo */
+.logo {
+  position: relative;
+  z-index: 1000;
+}
+
+.logo img {
+  width: 140px;
+  height: 120px;
+  animation: logoFade 1s ease-out;
+}
+
+@keyframes logoFade {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Navigation container */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  opacity: 0;
+  transform: translateY(-15px);
+  animation: navFadeSlideIn 0.6s forwards ease-out;
+  position: relative;
+  z-index: 900;
+}
+
+/* Nav items (links and dropdown container) */
+nav .nav-item {
+  position: relative;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: navLinkFadeIn 0.4s forwards ease-out;
+  transition: color 0.3s ease;
+}
+
+/* Stagger animation delay for nav items */
+nav .nav-item:nth-child(1) { animation-delay: 0.3s; }
+nav .nav-item:nth-child(2) { animation-delay: 0.45s; }
+nav .nav-item:nth-child(3) { animation-delay: 0.6s; }
+nav .nav-item:nth-child(4) { animation-delay: 0.75s; }
+nav .nav-item:nth-child(5) { animation-delay: 0.9s; }
+nav .nav-item:nth-child(6) { animation-delay: 1.05s; }
+
+/* Underline effect on hover for links */
+nav a.nav-item::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+nav a.nav-item:hover::after {
+  width: 100%;
+}
+
+/* Dropdown toggle cursor */
+.dropdown > a {
+  display: inline-block;
+  user-select: none;
+  position: relative;
+  padding-right: 15px;
+}
+
+/* Dropdown arrow */
+.dropdown > a::after {
+  content: "▾";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7em;
+  color: black;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow on dropdown open */
+.dropdown.show-mobile > a::after,
+.dropdown:hover > a::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Dropdown content box */
+.dropdown-content {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background-color: white;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  min-width: 220px;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+  text-decoration: none;
+  color: black;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show dropdown on hover (desktop) */
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Keyframes for nav fade-in */
+@keyframes navFadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Keyframes for nav links fade-in */
+@keyframes navLinkFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 1100;
+  transition: transform 0.4s ease;
+  position: relative;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: hamburgerFadeIn 0.4s forwards ease-out 0.6s; /* faster from 0.8s to 0.4s */
+}
+
+@keyframes hamburgerFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hamburger span {
+  height: 3px;
+  background-color: black;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+
+/* Hamburger active animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Responsive Styling */
+@media (max-width: 850px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 40px;
+    background: white;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    z-index: 999;
+  }
+
+  nav.showing {
+    display: flex !important;
+    opacity: 0;
+    transform: translateY(-15px);
+    pointer-events: none;
+  }
+
+  nav.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  nav .nav-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* Dropdown content mobile styles */
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    padding: 0 0 10px 0;
+    flex-direction: column;
+    overflow: hidden;
+
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    display: flex;
+  }
+
+  /* Show dropdown content on mobile when toggled */
+  .dropdown.show-mobile .dropdown-content {
+    max-height: 500px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+footer {
+  background: #111;
+  color: #f5f5f5;
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.footer-brand img {
+  width: 60px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.footer-brand h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+}
+
+.footer-social {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social img {
+  width: 28px;
+  height: 28px;
+  filter: invert(100%);
+  transition: transform 0.3s ease;
+}
+
+.footer-social img:hover {
+  transform: scale(1.2);
+}
+
+
+.footer-contact p {
+  margin: 3px 0;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+
+.footer-bottom {
+  margin-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 10px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    padding: 10px;
+  }
+}
